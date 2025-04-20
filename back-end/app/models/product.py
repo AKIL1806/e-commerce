@@ -1,8 +1,10 @@
-from pydantic import BaseModel, Field, validator
-from typing import Optional
-from uuid import UUID, uuid4
+# app/models/product.py
+from sqlalchemy import Table, Column, String, Float, MetaData
+from sqlalchemy.dialects.postgresql import UUID
+import uuid
 
-# Supported categories
+metadata = MetaData()
+
 CATEGORIES = [
     "mobiles",
     "laptops",
@@ -17,27 +19,13 @@ CATEGORIES = [
     "groceries"
 ]
 
-class Product(BaseModel):
-    id: UUID = Field(default_factory=uuid4)
-    name: str
-    description: str
-    price: float
-    image_url: str
-    category: str
-
-    @validator("category")
-    def validate_category(cls, v):
-        if v not in CATEGORIES:
-            raise ValueError(f"Category must be one of: {', '.join(CATEGORIES)}")
-        return v
-
-    class Config:
-        schema_extra = {
-            "example": {
-                "name": "MacBook Pro",
-                "description": "Powerful laptop from Apple",
-                "price": 2499.99,
-                "image_url": "https://example.com/macbook.jpg",
-                "category": "laptops"
-            }
-        }
+products = Table(
+    "products",
+    metadata,
+    Column("id", UUID(as_uuid=True), primary_key=True, default=uuid.uuid4),
+    Column("name", String, nullable=False),
+    Column("description", String),
+    Column("price", Float, nullable=False),
+    Column("image_url", String),
+    Column("category", String, nullable=False)
+)
