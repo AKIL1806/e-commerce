@@ -1,24 +1,30 @@
 from fastapi import FastAPI
-from app.routes import Products
+from app.routes import products
+from app.database import database  # Add this line
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(
-    title="Quantum Shop API",
-    description="A futuristic eCommerce backend with product categories and detailed routes.",
-    version="1.0.0"
-)
+app = FastAPI()
 
-# CORS config so front-end can talk to the back-end
+# CORS settings
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Replace "*" with specific origin in production
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Include product routes
-app.include_router(Products.router)
+# Connect DB on startup and disconnect on shutdown
+@app.on_event("startup")
+async def startup():
+    await database.connect()
+
+@app.on_event("shutdown")
+async def shutdown():
+    await database.disconnect()
+
+# Include routes
+app.include_router(products.router)
 
 @app.get("/")
 def root():
