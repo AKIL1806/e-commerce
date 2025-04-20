@@ -1,0 +1,32 @@
+/* src/ProductDetail.css */
+
+.product-detail-container {
+    padding: 2rem;
+    color: #fff;
+    background-color: #000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .product-detail-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  
+  .product-detail-info {
+    background-color: #111;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    max-width: 600px;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .product-detail-info p {
+    margin: 0.5rem 0;
+  }
+  
