@@ -1,4 +1,106 @@
 /* Global Reset + Layout */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+    margin-bottom: 3rem;
+  }
+  .logo {
+    font-size: 2rem;
+    color: #00f0ff;
+    text-shadow: 0 0 10px #00f0ff99;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #00f0ff;
+    text-shadow: 0 0 8px #00f0ff88;
+  }
+  
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    border-radius: 20px;
+    background: radial-gradient(circle at center, #00f0ff11, transparent);
+  }
+  
+  .hero p {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: #aaa;
+  }
+  
+  .neon-text {
+    color: #00f0ff;
+    text-shadow: 0 0 10px #00f0ff66;
+  }
+  
+  /* Newsletter Section */
+  .newsletter {
+    text-align: center;
+    margin-top: 5rem;
+    padding: 3rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 240, 255, 0.08);
+    backdrop-filter: blur(10px);
+  }
+  
+  .newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .newsletter input {
+    width: 250px;
+  }
+  
+  /* Footer */
+  .footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 240, 255, 0.1);
+    text-align: center;
+    font-size: 0.95rem;
+    color: #aaa;
+  }
+  
+  .footer .socials {
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .footer .socials a {
+    color: #00f0ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .footer .socials a:hover {
+    text-shadow: 0 0 10px #00f0ff;
+  }
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
@@ -143,5 +245,69 @@ body {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+  /* Top Banner */
+.banner {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00f0ff;
+    text-shadow: 0 0 15px #00f0ff88;
+  }
+  
+  /* Auth Buttons in Hero */
+  .auth-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .auth-buttons button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  /* Category Section */
+  .categories {
+    margin-top: 4rem;
+    text-align: center;
+  }
+  
+  .categories h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px #00f0ff55;
+  }
+  
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+  
+  .category-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.05);
+  }
+  
+  .category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 40px rgba(0, 240, 255, 0.3);
+  }
+  
+  .category-card h3 {
+    font-size: 1.5rem;
+    color: #00f0ff;
+    text-shadow: 0 0 5px #00f0ff66;
   }
   
