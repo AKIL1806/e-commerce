@@ -22,10 +22,18 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <motion.section className="hero" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-        <h1>Welcome to Aura</h1>
-        <p>Where future meets fashion & tech.</p>
-        <button>Start Shopping</button>
+      <motion.section
+        className="w-full hero-section"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <div className="hero-content">
+          <h1>Welcome to Aura</h1>
+          <p>Where future meets fashion & tech.</p>
+          <button>Start Shopping</button>
+        </div>
       </motion.section>
 
       {/* Categories */}
