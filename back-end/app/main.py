@@ -1,7 +1,8 @@
 from fastapi import FastAPI
-from app.routes import products
-from app.database import database  # Add this line
+from app.routes import products, auth
+from app.database import database
 from fastapi.middleware.cors import CORSMiddleware
+from app import models
 
 app = FastAPI()
 
@@ -25,6 +26,7 @@ async def shutdown():
 
 # Include routes
 app.include_router(products.router)
+app.include_router(auth.router)
 
 @app.get("/")
 def root():
