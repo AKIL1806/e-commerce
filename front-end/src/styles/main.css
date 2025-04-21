@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-items:center;
     background: rgba(255, 255, 255, 0.03);
-    padding: 0.5rem 35rem;
+    padding: 1rem 2rem;
     border-radius: 20px;
     backdrop-filter: blur(12px);
     box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
@@ -15,7 +15,7 @@
     font-size: 2rem;
     color: #00f0ff;
     text-shadow: 0 0 10px #00f0ff99;
-    transform: translateX(-30%);
+    transform: translateX(-5%);
   }
   .nav-links {
     display: flex;
@@ -35,17 +35,50 @@
   
   /* Hero Section */
   .hero {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     text-align: center;
-    margin-bottom: 4rem;
-    padding: 2rem;
+    margin-bottom: 0.5rem; /* reduced */
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 20px;
     background: radial-gradient(circle at center, #00f0ff11, transparent);
   }
+  
   
   .hero p {
     font-size: 1.3rem;
     margin-bottom: 1.5rem;
     color: #aaa;
+  }
+  .hero-content h1 {
+    font-size: 3rem;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    color: #ccc;
+  }
+  
+  .hero-content button {
+    background: #00ffff;
+    color: black;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-bottom: 2rem; /* added spacing after button */
+  }
+  
+  
+  .hero-content button:hover {
+    background: #0ff;
+    box-shadow: 0 0 15px #0ff;
   }
   
   .neon-text {
@@ -108,8 +141,7 @@ body {
     font-family: 'Segoe UI', sans-serif;
     background: #000;
     color: #fff;
-    display: flex;
-    justify-content: center;
+    display: block;
     align-items: flex-start;
     min-height: 100vh;
     padding: 40px;
@@ -120,11 +152,13 @@ body {
   
   /* Page Wrapper */
   .page {
-    max-width: 1200px;
+    width:100%;
+    max-width:none;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2rem 4rem;
     color: white;
     font-family: 'Poppins', sans-serif;
+    box-sizing:border-box;
   }
 .category-grid,
 .product-grid {
@@ -162,10 +196,10 @@ body {
   }
   
   .product-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+    transform: translateY(-10px);
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
   }
-  
+  S
   .product-card img {
     width: 100%;
     border-radius: 12px;

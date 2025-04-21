@@ -15,7 +15,6 @@ export default function Home() {
         <h2 className="logo">Aura</h2>
         <div className="nav-links">
           <a href="#">Home</a>
-          <a href="#">Shop</a>
           <a href="#">Login</a>
           <a href="#">Signup</a>
         </div>
@@ -23,7 +22,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <motion.section
-        className="w-full hero-section"
+        className="hero"
         variants={fadeUp}
         initial="hidden"
         whileInView="visible"
@@ -37,7 +36,13 @@ export default function Home() {
       </motion.section>
 
       {/* Categories */}
-      <motion.section className="categories" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <motion.section
+        className="categories"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <h2>Categories</h2>
         <div className="category-grid">
           <div className="category-card">Clothing</div>
@@ -49,21 +54,36 @@ export default function Home() {
       </motion.section>
 
       {/* Featured Products */}
-      <motion.section className="featured-products" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <motion.section
+        className="featured-products"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <h2>Featured Products</h2>
         <div className="product-grid">
-          <ProductCard name="HoloPhone Z" price="$999" image="https://via.placeholder.com/300x200" />
-          <ProductCard name="Quantum Lamp" price="$249" image="https://via.placeholder.com/300x200" />
-          <ProductCard name="Neon Laptop" price="$1999" image="https://via.placeholder.com/300x200" />
+          <ProductCard name="PulseBand" price="$199" image="/pulse-band.jpg" />
+          <ProductCard name="HoverSneaks" price="$299" image="/hover-sneaks.jpg"/>
+          <ProductCard name="VoidCam" price="$649" image="/void-cam.png" />
+          <ProductCard name="SmartMirror X" price="$199" image="/smart-mirror.jpg"/>
         </div>
       </motion.section>
 
       {/* Newsletter Signup */}
-      <motion.section className="newsletter" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <motion.section
+        className="newsletter"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <h2>Stay in the Loop</h2>
         <p>Sign up for exclusive offers and futuristic product drops.</p>
-        <input type="email" placeholder="Your email" />
-        <button>Subscribe</button>
+        <div className="newsletter-form">
+          <input type="email" placeholder="Your email" />
+          <button>Subscribe</button>
+        </div>
       </motion.section>
 
       {/* Footer */}
