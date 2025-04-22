@@ -7,11 +7,6 @@ import Home from "./pages/Home"; // Create this as a landing page
 const App = () => {
   return (
     <div>
-      <nav>
-        <Link to="/">Home</Link> | <Link to="/login">Login</Link> |{" "}
-        <Link to="/signup">Signup</Link>
-      </nav>
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
