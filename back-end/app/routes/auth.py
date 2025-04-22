@@ -1,31 +1,30 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
-from app import schemas, models, database
-from app.utils import auth
+from fastapi import APIRouter, HTTPException, status
+from app.schemas.user import UserCreate, UserOut, UserLogin
+from app.models.user import user_table  # Corrected import
+from app.database import database
+from passlib.context import CryptContext
 
-router = APIRouter(
-    prefix="/auth",
-    tags=["Authentication"]
-)
+router = APIRouter()
 
-@router.post("/signup", response_model=schemas.user.UserOut)
-def signup(user: schemas.user.UserCreate, db: Session = Depends(database.get_db)):
-    existing_user = db.query(models.user.User).filter(models.user.User.email == user.email).first()
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
+@router.post("/signup", response_model=UserOut)
+async def signup(user: UserCreate):
+    # Check if user already exists
+    query = user_table.select().where(user_table.c.email == user.email)
+    existing_user = await database.fetch_one(query)
     if existing_user:
-        raise HTTPException(status_code=400, detail="Email already registered")
-    
-    hashed_pwd = auth.hash_password(user.password)
-    new_user = models.user.User(email=user.email, hashed_password=hashed_pwd)
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
-    return new_user
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Email already registered",
+        )
 
-@router.post("/login")
-def login(user: schemas.user.UserLogin, db: Session = Depends(database.get_db)):
-    db_user = db.query(models.user.User).filter(models.user.User.email == user.email).first()
-    if not db_user or not auth.verify_password(user.password, db_user.hashed_password):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
-    
-    access_token = auth.create_access_token(data={"sub": db_user.email})
-    return {"access_token": access_token, "token_type": "bearer"}
+    # Hash the password
+    hashed_password = pwd_context.hash(user.password)
+
+    # Insert new user
+    query = user_table.insert().values(email=user.email, password=hashed_password)
+    user_id = await database.execute(query)
+
+    return UserOut(id=user_id, email=user.email)
