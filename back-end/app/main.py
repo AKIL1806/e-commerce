@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from app.routes import products, auth
-from app.database import database
+from app.database import database, engine
+from app.models import user  # Import your models to register metadata
 from fastapi.middleware.cors import CORSMiddleware
-from app import models
+from routes.Users import router as UserRouter
 
 app = FastAPI()
 
@@ -15,9 +16,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Connect DB on startup and disconnect on shutdown
+# Create tables on startup
 @app.on_event("startup")
 async def startup():
+    user.metadata.create_all(bind=engine)  # Create the users table
     await database.connect()
 
 @app.on_event("shutdown")
@@ -27,6 +29,8 @@ async def shutdown():
 # Include routes
 app.include_router(products.router)
 app.include_router(auth.router)
+app.include_router(UserRouter)
+
 
 @app.get("/")
 def root():
