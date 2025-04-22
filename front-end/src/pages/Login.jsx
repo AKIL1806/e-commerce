@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
@@ -12,13 +12,13 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ mobile, password }),
       });
 
       const data = await res.json();
       if (res.ok) {
         alert("Login successful!");
-        // You can store token if you return one from backend like: localStorage.setItem("token", data.token);
+        // You can redirect or store token here
       } else {
         alert(data.detail || "Login failed.");
       }
@@ -32,10 +32,10 @@ const Login = () => {
     <div className="form">
       <h2>Login</h2>
       <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        type="text"
+        placeholder="Mobile Number"
+        value={mobile}
+        onChange={(e) => setMobile(e.target.value)}
       />
       <input
         type="password"
